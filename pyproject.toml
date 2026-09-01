@@ -1,0 +1,9 @@
+[project]
+name = "ai-document-review-agent"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.141.1",
+    "fastapi-cli>=0.0.32",
+    "uvicorn[standard]>=0.52.4",
+]

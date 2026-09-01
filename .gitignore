@@ -1,0 +1,12 @@
+/python-version
+
+__pycache__/
+*.pyc
+
+#ignore Python virtual environments
+venv/
+.venv/
+env/
+
+#ignore environmental variables
+.env
