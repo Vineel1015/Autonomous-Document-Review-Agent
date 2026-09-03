@@ -12,7 +12,9 @@ so this module doesn't try.
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+from app.config import get_settings
 from app.db import connect_db, disconnect_db
 from app.graph.checkpointer import connect_checkpointer, disconnect_checkpointer
 from app.routers import companies, documents, metrics, reviews
@@ -28,6 +30,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="AI Document Review Agent", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=get_settings().cors_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(documents.router)
 app.include_router(reviews.router)

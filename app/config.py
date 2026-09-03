@@ -29,6 +29,11 @@ class Settings(BaseSettings):
     anthropic_api_key: str | None = None
     anthropic_workspace_id: str | None = None
 
+    # Origins allowed to call the API from a browser (see app/main.py's CORSMiddleware).
+    # Default covers the Vite dev server. Override in .env as a JSON array,
+    # e.g. CORS_ORIGINS=["http://localhost:5173","https://app.example.com"]
+    cors_origins: list[str] = ["http://localhost:5173"]
+
 
 @lru_cache
 def get_settings() -> Settings:

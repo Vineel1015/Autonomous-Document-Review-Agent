@@ -1,0 +1,211 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Inter — self-hosted (no runtime request to Google Fonts), weights 400/500/600/700 */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+
+    /* Severity — findings (escalating ramp: read as a sequence, not arbitrary hues) */
+    --color-severity-info: var(--severity-info);
+    --color-severity-info-bg: var(--severity-info-bg);
+    --color-severity-warning: var(--severity-warning);
+    --color-severity-warning-bg: var(--severity-warning-bg);
+    --color-severity-anomaly: var(--severity-anomaly);
+    --color-severity-anomaly-bg: var(--severity-anomaly-bg);
+    --color-severity-critical: var(--severity-critical);
+    --color-severity-critical-bg: var(--severity-critical-bg);
+
+    /* Status — documents */
+    --color-status-processing: var(--status-processing);
+    --color-status-processing-bg: var(--status-processing-bg);
+    --color-status-awaiting: var(--status-awaiting);
+    --color-status-awaiting-bg: var(--status-awaiting-bg);
+    --color-status-complete: var(--status-complete);
+    --color-status-complete-bg: var(--status-complete-bg);
+    --color-status-rejected: var(--status-rejected);
+    --color-status-rejected-bg: var(--status-rejected-bg);
+    --color-status-failed: var(--status-failed);
+    --color-status-failed-bg: var(--status-failed-bg);
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.17 0.01 260);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.17 0.01 260);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.17 0.01 260);
+
+    /* One restrained accent blue — the only saturated color outside the
+       severity/status ramps, so it stays legible as "the actionable color." */
+    --primary: oklch(0.55 0.18 258);
+    --primary-foreground: oklch(0.985 0 0);
+    --accent: oklch(0.96 0.015 258);
+    --accent-foreground: oklch(0.4 0.14 258);
+
+    --secondary: oklch(0.97 0.003 260);
+    --secondary-foreground: oklch(0.22 0.01 260);
+    --muted: oklch(0.97 0.003 260);
+    --muted-foreground: oklch(0.5 0.01 260);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.92 0.005 260);
+    --input: oklch(0.92 0.005 260);
+    --ring: oklch(0.55 0.18 258 / 0.5);
+
+    --chart-1: oklch(0.55 0.18 258);
+    --chart-2: oklch(0.6 0.12 190);
+    --chart-3: oklch(0.65 0.15 145);
+    --chart-4: oklch(0.7 0.15 85);
+    --chart-5: oklch(0.6 0.18 25);
+    --radius: 0.5rem;
+
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.17 0.01 260);
+    --sidebar-primary: oklch(0.55 0.18 258);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0.003 260);
+    --sidebar-accent-foreground: oklch(0.22 0.01 260);
+    --sidebar-border: oklch(0.92 0.005 260);
+    --sidebar-ring: oklch(0.55 0.18 258 / 0.5);
+
+    /* Severity — escalating: info (neutral) -> warning (amber) -> anomaly (orange) -> critical (red) */
+    --severity-info: oklch(0.5 0.02 250);
+    --severity-info-bg: oklch(0.96 0.01 250);
+    --severity-warning: oklch(0.55 0.15 75);
+    --severity-warning-bg: oklch(0.95 0.06 85);
+    --severity-anomaly: oklch(0.55 0.17 45);
+    --severity-anomaly-bg: oklch(0.95 0.07 55);
+    --severity-critical: oklch(0.55 0.21 25);
+    --severity-critical-bg: oklch(0.95 0.06 22);
+
+    /* Status — deliberately distinct from severity where meaning differs:
+       "rejected" is cooler than "critical" (a human decision, not a red-alert
+       finding); "failed" is neutral + a red icon (pipeline broke, not "no"). */
+    --status-processing: oklch(0.5 0.16 280);
+    --status-processing-bg: oklch(0.96 0.03 280);
+    --status-awaiting: oklch(0.55 0.15 75);
+    --status-awaiting-bg: oklch(0.94 0.07 85);
+    --status-complete: oklch(0.5 0.14 150);
+    --status-complete-bg: oklch(0.95 0.05 150);
+    --status-rejected: oklch(0.45 0.1 10);
+    --status-rejected-bg: oklch(0.94 0.03 10);
+    --status-failed: oklch(0.45 0.006 260);
+    --status-failed-bg: oklch(0.93 0.003 260);
+}
+
+.dark {
+    --background: oklch(0.16 0.01 260);
+    --foreground: oklch(0.96 0.003 260);
+    --card: oklch(0.2 0.01 260);
+    --card-foreground: oklch(0.96 0.003 260);
+    --popover: oklch(0.2 0.01 260);
+    --popover-foreground: oklch(0.96 0.003 260);
+
+    --primary: oklch(0.68 0.16 258);
+    --primary-foreground: oklch(0.16 0.02 260);
+    --accent: oklch(0.28 0.03 258);
+    --accent-foreground: oklch(0.85 0.08 258);
+
+    --secondary: oklch(0.26 0.008 260);
+    --secondary-foreground: oklch(0.96 0.003 260);
+    --muted: oklch(0.26 0.008 260);
+    --muted-foreground: oklch(0.65 0.01 260);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.68 0.16 258 / 0.5);
+
+    --chart-1: oklch(0.68 0.16 258);
+    --chart-2: oklch(0.7 0.1 190);
+    --chart-3: oklch(0.72 0.13 145);
+    --chart-4: oklch(0.75 0.13 85);
+    --chart-5: oklch(0.68 0.16 25);
+
+    --sidebar: oklch(0.2 0.01 260);
+    --sidebar-foreground: oklch(0.96 0.003 260);
+    --sidebar-primary: oklch(0.68 0.16 258);
+    --sidebar-primary-foreground: oklch(0.16 0.02 260);
+    --sidebar-accent: oklch(0.26 0.008 260);
+    --sidebar-accent-foreground: oklch(0.96 0.003 260);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.68 0.16 258 / 0.5);
+
+    --severity-info: oklch(0.75 0.02 250);
+    --severity-info-bg: oklch(0.28 0.015 250);
+    --severity-warning: oklch(0.78 0.13 80);
+    --severity-warning-bg: oklch(0.3 0.06 80);
+    --severity-anomaly: oklch(0.75 0.15 50);
+    --severity-anomaly-bg: oklch(0.3 0.07 50);
+    --severity-critical: oklch(0.72 0.19 25);
+    --severity-critical-bg: oklch(0.3 0.08 25);
+
+    --status-processing: oklch(0.75 0.14 280);
+    --status-processing-bg: oklch(0.28 0.06 280);
+    --status-awaiting: oklch(0.78 0.13 80);
+    --status-awaiting-bg: oklch(0.3 0.06 80);
+    --status-complete: oklch(0.72 0.14 150);
+    --status-complete-bg: oklch(0.28 0.05 150);
+    --status-rejected: oklch(0.68 0.08 15);
+    --status-rejected-bg: oklch(0.28 0.03 15);
+    --status-failed: oklch(0.7 0.006 260);
+    --status-failed-bg: oklch(0.26 0.005 260);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}

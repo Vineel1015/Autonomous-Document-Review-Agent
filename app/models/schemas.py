@@ -138,6 +138,8 @@ class DocumentOut(BaseModel):
     filename: str
     status: ReviewStatus
     company_id: UUID | None = None
+    ticker: str | None = None
+    company_name: str | None = None
     filing_type: FilingType | None = None
     fiscal_year: int | None = None
     fiscal_period: FiscalPeriod | None = None
