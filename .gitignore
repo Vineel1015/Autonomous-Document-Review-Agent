@@ -10,3 +10,6 @@ env/
 
 #ignore environmental variables
 .env
+
+# personal build notes — not part of the public project
+/docs

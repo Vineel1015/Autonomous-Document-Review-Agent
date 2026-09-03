@@ -1,8 +1,7 @@
 # Frontend — AI Document Review Agent
 
 React + TypeScript + Vite. The reviewer workflow: document list, upload, and
-the approve/reject decision flow. See `../docs/DEVELOPMENT_HISTORY.md` for
-the backend's story and `../README.md` for the whole system.
+the approve/reject decision flow. See `../README.md` for the whole system.
 
 ## Dev setup
 
