@@ -1,16 +1,22 @@
 services:
   db:
-    image: postgres:16-alpine
-    container-name: postgres-db
+    image: pgvector/pgvector:pg18
+    container_name: postgres-db
     restart: always
-    environemnt:
+    environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-    ports: 
-      -"5432:5432"
+    ports:
+      - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
-volumes:
-  - postgres_data
+      - db_data:/var/lib/postgresql
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
+volumes:
+  db_data:

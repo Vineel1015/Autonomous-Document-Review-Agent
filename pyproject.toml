@@ -3,7 +3,15 @@ name = "ai-document-review-agent"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "asyncpg>=0.31.0",
     "fastapi>=0.141.1",
     "fastapi-cli>=0.0.32",
+    "langchain-anthropic>=1.7.0",
+    "langfuse>=4.15.1",
+    "langgraph>=1.2.11",
+    "langgraph-checkpoint-postgres>=3.1.2",
+    "psycopg[binary]>=3.3.5",
+    "pydantic-settings>=2.15.0",
+    "python-multipart>=0.0.32",
     "uvicorn[standard]>=0.52.4",
 ]
